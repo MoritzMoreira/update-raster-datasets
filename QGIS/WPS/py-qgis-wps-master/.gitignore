@@ -1,0 +1,54 @@
+.idea/
+*.pyc
+*.pyo
+*.egg-info
+dist
+build
+tmp
+.tox
+docs/_build
+
+.ipython
+
+__pycache__
+
+# Tests/runtime directory
+__workdir__
+__outputpath__
+__outputdir__
+
+# C/build cache
+.ccache
+.local
+
+# Test outputs
+.cache
+__output__
+
+# vim, mac os
+*.sw*
+.DS_Store
+.*.un~
+
+# git
+
+*.orig
+.coverage
+
+.pytest_cache
+
+__ccache__
+
+build.manifest
+factory.manifest
+
+# QGIS files
+
+qgis.db
+.env
+
+*.aux.xml
+
+VERSION
+
+.qgis-restart

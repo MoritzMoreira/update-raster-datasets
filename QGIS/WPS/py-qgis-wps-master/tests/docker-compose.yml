@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+  wps:
+    image: ${QGIS_IMAGE}
+    working_dir: /src
+    command: ${RUN_COMMAND}
+    environment:
+      PIP_CACHE_DIR: /.cache
+      WORKERS: ${WORKERS}
+      QGSWPS_SERVER_ENABLE_FILTERS: 'yes'
+      QGSWPS_CACHE_ROOTDIR: /src/tests/unittests/data 
+      QGSWPS_PROCESSING_PROVIDERS_MODULE_PATH: /src/tests/unittests
+      QGSWPS_SERVER_WORKDIR: /srv/data
+      QGSWPS_SERVER_RESTARTMON: /src/.qgis-restart
+      QGIS_OPTIONS_PATH: /src/tests/qgis
+      QGSWPS_LOGLEVEL: DEBUG
+      QGSWPS_REDIS_HOST: redis
+      QGSWPS_EXPOSE_SERVER_INFOS: 'yes'
+      PYTEST_ADDOPTS: ${PYTEST_ADDOPTS}
+    user: "${BECOME_USER}:${BECOME_USER}"
+    volumes:
+      - ${SRCDIR}:/src
+      - ${PWD}/.local:/.local
+      - ${PWD}/.cache:/.cache
+      - ${PWD}/__workdir__:/srv/data
+    ports:
+      - 127.0.0.1:8888:8080
+    deploy:
+        resources:
+            limits:
+                cpus: ${CPU_LIMITS}
+                memory: ${MEMORY_LIMITS}
+  redis:
+     image: redis:6-alpine
+

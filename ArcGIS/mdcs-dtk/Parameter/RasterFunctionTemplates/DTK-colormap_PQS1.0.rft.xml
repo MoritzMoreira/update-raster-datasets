@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RasterFunctionTemplate xsi:type="typens:RasterFunctionTemplate" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:typens="http://www.esri.com/schemas/ArcGIS/3.0.0">
+  <Name>DTK-Colormap PQS1.0</Name>
+  <Description>Füge die Colormap des PQS 1.0 zum Mosaic Dataset hinzu</Description>
+  <Function xsi:type="typens:ColormapFunction" id="ID1">
+    <Name>Colormap</Name>
+    <Description>Changes pixel values to display the raster data as either a grayscale or a red, green, blue (RGB) image, based on a colormap or a color ramp.</Description>
+    <PixelType>UNKNOWN</PixelType>
+  </Function>
+  <Arguments xsi:type="typens:ColormapFunctionArguments" id="ID2">
+    <Names xsi:type="typens:ArrayOfString" id="ID3">
+      <String>Raster</String>
+      <String>ColorSchemeType</String>
+      <String>Colormap</String>
+      <String>ColormapName</String>
+      <String>ColorRamp</String>
+      <String>ColormapFile</String>
+    </Names>
+    <Values xsi:type="typens:ArrayOfAnyType" id="ID4">
+      <AnyType xsi:type="typens:RasterFunctionVariable" id="ID5">
+        <Name>Raster</Name>
+        <Description></Description>
+        <Value></Value>
+        <IsDataset>true</IsDataset>
+      </AnyType>
+      <AnyType xsi:type="typens:RasterFunctionVariable" id="ID6">
+        <Name>ColorSchemeType</Name>
+        <Description></Description>
+        <Value xsi:type="xs:int">0</Value>
+        <IsDataset>false</IsDataset>
+      </AnyType>
+      <AnyType xsi:type="typens:RasterFunctionVariable" id="ID7">
+        <Name>Colormap</Name>
+        <Description></Description>
+        <Value xsi:type="typens:RasterColormap" id="ID8">
+          <ColormapSize>32</ColormapSize>
+          <Values xsi:type="typens:ArrayOfInt" id="ID9">
+            <Int>0</Int>
+            <Int>1</Int>
+            <Int>2</Int>
+            <Int>3</Int>
+            <Int>4</Int>
+            <Int>5</Int>
+            <Int>6</Int>
+            <Int>7</Int>
+            <Int>8</Int>
+            <Int>9</Int>
+            <Int>10</Int>
+            <Int>11</Int>
+            <Int>12</Int>
+            <Int>13</Int>
+            <Int>14</Int>
+            <Int>15</Int>
+            <Int>16</Int>
+            <Int>17</Int>
+            <Int>18</Int>
+            <Int>19</Int>
+            <Int>20</Int>
+            <Int>21</Int>
+            <Int>22</Int>
+            <Int>23</Int>
+            <Int>24</Int>
+            <Int>25</Int>
+            <Int>26</Int>
+            <Int>27</Int>
+            <Int>28</Int>
+            <Int>29</Int>
+            <Int>30</Int>
+            <Int>31</Int>
+          </Values>
+          <Colors xsi:type="typens:ArrayOfInt" id="ID10">
+            <Int>-328966</Int>
+            <Int>-1</Int>
+            <Int>-1</Int>
+            <Int>-1644865</Int>
+            <Int>-4980839</Int>
+            <Int>-3342362</Int>
+            <Int>-8326465</Int>
+            <Int>-3348762</Int>
+            <Int>-1638401</Int>
+            <Int>-65</Int>
+            <Int>-3355444</Int>
+            <Int>-5006849</Int>
+            <Int>-8368641</Int>
+            <Int>-1</Int>
+            <Int>-1</Int>
+            <Int>-1</Int>
+            <Int>-1</Int>
+            <Int>-2172435</Int>
+            <Int>-34561</Int>
+            <Int>-1</Int>
+            <Int>-10066330</Int>
+            <Int>-16711681</Int>
+            <Int>-16731137</Int>
+            <Int>-1</Int>
+            <Int>-16776961</Int>
+            <Int>-65383</Int>
+            <Int>-16724992</Int>
+            <Int>-32768</Int>
+            <Int>-10066228</Int>
+            <Int>-16777114</Int>
+            <Int>-16777216</Int>
+            <Int>-16777216</Int>
+          </Colors>
+        </Value>
+        <IsDataset>false</IsDataset>
+      </AnyType>
+      <AnyType xsi:type="typens:RasterFunctionVariable" id="ID11">
+        <Name>ColormapName</Name>
+        <Description></Description>
+        <Value xsi:type="xs:string"></Value>
+        <IsDataset>false</IsDataset>
+      </AnyType>
+      <AnyType xsi:type="typens:RasterFunctionVariable" id="ID12">
+        <Name>ColorRamp</Name>
+        <Description></Description>
+        <Value></Value>
+        <IsDataset>false</IsDataset>
+      </AnyType>
+      <AnyType xsi:type="xs:string">M:\DTK-N-Repository\mdcs-dtk\Parameter\Colormaps\DTK-N_PQS1.0.clr</AnyType>
+    </Values>
+  </Arguments>
+  <Aliases xsi:type="typens:ArrayOfString" id="ID13">
+    <String>__tans__(ColormapName)</String>
+  </Aliases>
+  <Help></Help>
+  <Type>0</Type>
+  <Thumbnail xsi:type="xs:string"></Thumbnail>
+  <Definition></Definition>
+  <Group></Group>
+  <Tag></Tag>
+  <ThumbnailEx></ThumbnailEx>
+  <Properties xsi:type="typens:PropertySet" id="ID14">
+    <PropertyArray xsi:type="typens:ArrayOfPropertySetProperty" id="ID15">
+      <PropertySetProperty xsi:type="typens:PropertySetProperty" id="ID16">
+        <Key>MatchVariable</Key>
+        <Value xsi:type="typens:RasterFunctionVariable" id="ID17">
+          <Name>MatchVariable</Name>
+          <Description></Description>
+          <Value xsi:type="xs:int">1</Value>
+          <IsDataset>false</IsDataset>
+        </Value>
+      </PropertySetProperty>
+      <PropertySetProperty xsi:type="typens:PropertySetProperty" id="ID18">
+        <Key>UnionDimension</Key>
+        <Value xsi:type="typens:RasterFunctionVariable" id="ID19">
+          <Name>UnionDimension</Name>
+          <Description></Description>
+          <Value xsi:type="xs:int">0</Value>
+          <IsDataset>false</IsDataset>
+        </Value>
+      </PropertySetProperty>
+    </PropertyArray>
+  </Properties>
+</RasterFunctionTemplate>

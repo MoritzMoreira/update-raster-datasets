@@ -1,0 +1,44 @@
+<VRTDataset rasterXSize="16000" rasterYSize="16000">
+  <SRS dataAxisToSRSAxisMapping="1,2">PROJCS["ETRS_1989_UTM_Zone_32N",GEOGCS["ETRS89",DATUM["European_Terrestrial_Reference_System_1989",SPHEROID["GRS 1980",6378137,298.257222101004,AUTHORITY["EPSG","7019"]],AUTHORITY["EPSG","6258"]],PRIMEM["Greenwich",0],UNIT["degree",0.0174532925199433,AUTHORITY["EPSG","9122"]],AUTHORITY["EPSG","4258"]],PROJECTION["Transverse_Mercator"],PARAMETER["latitude_of_origin",0],PARAMETER["central_meridian",9],PARAMETER["scale_factor",0.9996],PARAMETER["false_easting",500000],PARAMETER["false_northing",0],UNIT["metre",1,AUTHORITY["EPSG","9001"]],AXIS["Easting",EAST],AXIS["Northing",NORTH],AUTHORITY["EPSG","25832"]]</SRS>
+  <GeoTransform>  3.2000000000000000e+05,  5.0000000000000000e+00,  0.0000000000000000e+00,  5.6400000000000000e+06,  0.0000000000000000e+00, -5.0000000000000000e+00</GeoTransform>
+  <VRTRasterBand dataType="Byte" band="1">
+    <NoDataValue>1</NoDataValue>
+    <ColorInterp>Palette</ColorInterp>
+    <ColorTable>
+      <Entry c1="0" c2="0" c3="0" c4="255" />
+      <Entry c1="255" c2="255" c3="255" c4="255" />
+    </ColorTable>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0">S:\dtk100\utm32s/vertrieb\s32320\dtk100_32320_5560_40\dtk100_32320_5560_40_acke.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="8000" RasterYSize="8000" DataType="Byte" BlockXSize="128" BlockYSize="128" />
+      <SrcRect xOff="0" yOff="0" xSize="8000" ySize="8000" />
+      <DstRect xOff="0" yOff="8000" xSize="8000" ySize="8000" />
+      <NODATA>1</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0">S:\dtk100\utm32s/vertrieb\s32320\dtk100_32320_5600_40\dtk100_32320_5600_40_acke.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="8000" RasterYSize="8000" DataType="Byte" BlockXSize="128" BlockYSize="128" />
+      <SrcRect xOff="0" yOff="0" xSize="8000" ySize="8000" />
+      <DstRect xOff="0" yOff="0" xSize="8000" ySize="8000" />
+      <NODATA>1</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0">S:\dtk100\utm32s/vertrieb\s32360\dtk100_32360_5560_40\dtk100_32360_5560_40_acke.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="8000" RasterYSize="8000" DataType="Byte" BlockXSize="128" BlockYSize="128" />
+      <SrcRect xOff="0" yOff="0" xSize="8000" ySize="8000" />
+      <DstRect xOff="8000" yOff="8000" xSize="8000" ySize="8000" />
+      <NODATA>1</NODATA>
+    </ComplexSource>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="0">S:\dtk100\utm32s/vertrieb\s32360\dtk100_32360_5600_40\dtk100_32360_5600_40_acke.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="8000" RasterYSize="8000" DataType="Byte" BlockXSize="128" BlockYSize="128" />
+      <SrcRect xOff="0" yOff="0" xSize="8000" ySize="8000" />
+      <DstRect xOff="8000" yOff="0" xSize="8000" ySize="8000" />
+      <NODATA>1</NODATA>
+    </ComplexSource>
+  </VRTRasterBand>
+</VRTDataset>

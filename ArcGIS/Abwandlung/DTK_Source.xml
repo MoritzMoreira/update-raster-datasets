@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Application>
+	<Name>DTK Quellmosaike</Name>
+	<Command>CM+SP+DN+AR+CV+CV+BB+EMDG</Command>	  <!-- CM+SP+AR+CV+CV+IG+ClipFootprints+BB-->
+	<Workspace>
+		<WorkspacePath>$workspace$</WorkspacePath>
+		<Geodatabase>dtk$massstab$_$land$_$datum$</Geodatabase>
+		<MosaicDataset>
+			<MosaicDatasetType>source</MosaicDatasetType>
+			<Name>S_$layer$</Name>
+			<SRS>$srs$</SRS>
+			<num_bands>1</num_bands>
+			<pixel_type>$pixeltype$</pixel_type>
+			<DefaultProperties>
+				<allowed_compressions>None</allowed_compressions>
+				<resampling_type>NEAREST</resampling_type>
+				<clip_to_footprints>CLIP</clip_to_footprints>
+				<clip_to_boundary>CLIP</clip_to_boundary>
+				<footprints_may_contain_nodata>FOOTPRINTS_MAY_CONTAIN_NODATA</footprints_may_contain_nodata>
+				<allowed_mosaic_methods>NorthWest;None</allowed_mosaic_methods>
+				<default_mosaic_method>NorthWest</default_mosaic_method>
+				<cell_size>$cellSize$</cell_size>
+				<metadata_level>BASIC</metadata_level>
+				<data_source_type>THEMATIC</data_source_type>
+				<max_num_of_download_items>200</max_num_of_download_items>
+				<minimum_pixel_contribution>50</minimum_pixel_contribution>
+			</DefaultProperties>
+			<AddRasters>
+				<AddRaster>
+					<build_pyramids>NO_PYRAMIDS</build_pyramids>
+					<dataset_id>DTK_$land$_$datum$</dataset_id>
+					<raster_type>Raster Dataset</raster_type>
+					<Sources>
+						<data_path>$dataPath$</data_path>
+					</Sources>
+					<filter>*$layer$.tif</filter>
+					<sub_folder>SUBFOLDERS</sub_folder>
+					<duplicate_items_action>OVERWRITE_DUPLICATES</duplicate_items_action>
+					<calculate_statistics>NO_STATISTICS</calculate_statistics>
+				</AddRaster>
+			</AddRasters>	
+			<Processes>
+				<DefineMosaicDatasetNoData>
+					<num_bands>1</num_bands>
+					<bands_for_nodata_value>1</bands_for_nodata_value>
+					<bands_for_valid_data_range>1</bands_for_valid_data_range>
+					<Composite_nodata_value>0</Composite_nodata_value>
+				</DefineMosaicDatasetNoData>
+				<CalculateValues>
+				
+					<CalculateValue>
+						<fieldName>GroupName</fieldName>
+						<expression>splitLayerName(!Name!)</expression>
+						<expression_type>PYTHON3</expression_type>
+						<code_block>import re
+def splitLayerName(value):
+	mo = re.search('^dtk(25|50|100)[_]\d{4,5}[_]\d{4}[_]\d+|^[lc]?\d{4}', value.lower())      
+	try:
+		return mo.group()
+	except AttributeError:
+		return None
+						</code_block>
+					</CalculateValue>
+
+					<CalculateValue>
+						<fieldName>ZOrder</fieldName>
+						<expression>-1</expression>
+						<expression_type>PYTHON</expression_type>
+					</CalculateValue>
+				</CalculateValues>
+
+				<ImportGeometry>
+					<target_featureclass_type>$FOOTPRINT$</target_featureclass_type>
+					<target_join_field>GroupName</target_join_field>
+					<input_featureclass>\\lswfsdtk1\dtk2\DTK-N-Repository\Ressourcen\DTK-N_Erfassungseinheiten.gdb\b$massstab$_utm3$utm$s</input_featureclass>
+					<input_join_field>DTKNR</input_join_field>
+				</ImportGeometry>
+
+				<ClipFootprints>
+					<in_feature_class>\\lswfsdtk1\dtk2\DTK-N-Repository\Ressourcen\dtk$massstab$_Bestand.gdb\dtk$massstab$_laenderpolygone</in_feature_class>
+					<where_clause>Land LIKE '$land$'</where_clause>
+					<out_feature_class>$workspace$\dtk$massstab$_$land$_$datum$.gdb\source_footprints</out_feature_class>  
+				</ClipFootprints>
+				<BuildBoundary>
+					<append_to_existing>OVERWRITE</append_to_existing>
+				</BuildBoundary>
+				<ExportMosaicDatasetGeometry>
+                    <out_feature_class>$workspace$\dtk$massstab$_$land$_$datum$.gdb\source_footprints</out_feature_class>
+                    <geometry_type>FOOTPRINT</geometry_type>
+                </ExportMosaicDatasetGeometry>
+			</Processes>
+		</MosaicDataset>
+	</Workspace>
+</Application>

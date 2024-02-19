@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Application>
+	<Name>DTK Quellmosaik Col</Name>
+	<Command>CM+SP+SE+AR+AF+CV+CV+CV+IG+ClipFootprints+BB+ERF+ERF+SE+DO+SE+BO</Command>
+	<Workspace>
+		<WorkspacePath>$workspace$</WorkspacePath>
+		<Geodatabase>dtk$massstab$_$land$_$datum$</Geodatabase>
+		<MosaicDataset>
+			<MosaicDatasetType>source</MosaicDatasetType>
+			<Name>S_$layer$</Name>
+			<SRS>25832;$srs$</SRS>
+			<num_bands>1</num_bands>
+			<pixel_type>$pixeltype$</pixel_type>
+			<product_definition>None</product_definition>
+			<DefaultProperties>
+				<allowed_compressions>LZ77;None;JPEG</allowed_compressions>
+				<default_compression_type>LZ77</default_compression_type>
+				<resampling_type>NEAREST</resampling_type>
+				<clip_to_footprints>CLIP</clip_to_footprints>
+				<clip_to_boundary>CLIP</clip_to_boundary>
+				<footprints_may_contain_nodata>FOOTPRINTS_DO_NOT_CONTAIN_NODATA</footprints_may_contain_nodata>
+				<allowed_mosaic_methods>NorthWest;None</allowed_mosaic_methods>
+				<default_mosaic_method>NorthWest</default_mosaic_method>
+				<cell_size>$cellSize$</cell_size>
+				<metadata_level>BASIC</metadata_level>
+				<transmission_fields>MinPS;MaxPS;LowPS;HighPS;CenterX;CenterY;ZOrder;Shape_Length;Shape_Area;Land;Eigentuemer;Aktualitaet_Kachelinformationen;Version_Standard;Aktualitaet;Erfassungsmethode;Bildflugnummer;Kamera_Sensor;Bodenpixelgroesse;Spektralkanaele;Koordinatenreferenzssystem_Lage;Koordinatenreferenzssystem_Hoehe;Bezugsflaeche;Koordinatenursprung_East;Koordinatenursprung_North;Standardabweichung;Quelldatenqualitaet;Belaubungszustand;Bemerkungen</transmission_fields>
+				<data_source_type>THEMATIC</data_source_type>
+				<max_num_of_download_items>200</max_num_of_download_items>
+				<minimum_pixel_contribution>50</minimum_pixel_contribution>
+			</DefaultProperties>
+			<AddRasters>
+				<AddRaster>
+					<dataset_id>DTK_$land$_$datum$</dataset_id>
+					<raster_type>Raster Dataset</raster_type>
+					<Sources>
+						<data_path>$dataPath$</data_path>
+					</Sources>
+					<filter>*$layer$.tif</filter>
+					<sub_folder>SUBFOLDERS</sub_folder>
+					<duplicate_items_action>OVERWRITE_DUPLICATES</duplicate_items_action>
+				</AddRaster>
+			</AddRasters>
+			
+			<Table>
+				<AddFields>AddFields</AddFields>
+					<Fields>
+						<Field>
+							<name>Land</name>
+							<type>TEXT</type>
+							<length>2</length>
+						</Field>
+					</Fields>
+			</Table>
+
+			<Processes>
+				<JoinField>
+					<in_data>d:\test.gdb\AMD_mdName_SML</in_data>
+					<in_field>RasterID</in_field>
+					<join_table>d:\test.gdb\AMD_mdName_CAT</join_table>
+					<join_field>OBJECTID</join_field>
+					<fields>list_of_fields_to_joined</fields>
+				</JoinField>
+				<CalculateValues>
+					<CalculateValue>
+						<fieldName>GroupName</fieldName>
+						<expression>splitLayerName(!Name!)</expression>
+						<expression_type>PYTHON3</expression_type>
+						<code_block>import re
+def splitLayerName(value):
+  mo = re.search('^dtk(25|50|100)[_]\d{4,5}[_]\d{4}[_]\d+[_][a-z]{2}|^[lc]?\d{4}', value.lower())
+  try:
+    return mo.group()
+  except AttributeError:
+    return None
+						</code_block>
+					</CalculateValue>
+
+					<CalculateValue>
+						<fieldName>Land</fieldName>
+						<expression>'$land$'</expression>
+						<expression_type>PYTHON</expression_type>
+					</CalculateValue>
+					<CalculateValue>
+						<fieldName>ZOrder</fieldName>
+						<expression>2</expression>
+						<expression_type>PYTHON</expression_type>
+					</CalculateValue>
+				</CalculateValues>
+
+				<ImportGeometry>
+					<target_featureclass_type>FOOTPRINT</target_featureclass_type>
+					<target_join_field>GroupName</target_join_field>
+					<input_featureclass>\\lswfsdtk1\dtk2\DTK-N-Repository\Ressourcen\DTK-N_Erfassungseinheiten.gdb\b$massstab$_utm3$utm$s</input_featureclass>
+					<input_join_field>DTKNR</input_join_field>
+				</ImportGeometry>
+
+				<ClipFootprints>
+					<in_feature_class>\\lswfsdtk1\dtk2\DTK-N-Repository\Ressourcen\dtk$massstab$_Bestand.gdb\dtk$massstab$_laenderpolygone</in_feature_class>
+					<where_clause>Land LIKE '$land$'</where_clause>
+					<out_feature_class>$workspace$\dtk$massstab$_$land$_$datum$.gdb\dop20_$land$_clipped_Footprint</out_feature_class>
+				</ClipFootprints>
+
+				<ImportFieldValues>
+					<target_join_field>GroupName</target_join_field>
+					<input_featureclass>$metaFile$</input_featureclass>
+					<input_join_field>Name</input_join_field>
+					<fieldNameList>SK-Version;Bildflug;Topographie;Spitzenaktualitaet;Georeferenzierung</fieldNameList>
+				</ImportFieldValues>
+				
+				<Environment>
+					<parallelProcessingFactor>50%</parallelProcessingFactor>
+				</Environment>
+
+					<EditRasterFunction>
+					<edit_mosaic_dataset_item>EDIT_MOSAIC_DATASET</edit_mosaic_dataset_item>
+					<edit_options>INSERT</edit_options>
+					<function_chain_definition>DTK-Colormap_PQS1.0.rft.xml</function_chain_definition>
+					<location_function_name>Mosaic Function</location_function_name>
+				</EditRasterFunction>
+				<EditRasterFunction>
+					<edit_mosaic_dataset_item>EDIT_MOSAIC_DATASET</edit_mosaic_dataset_item>
+					<edit_options>INSERT</edit_options>
+					<function_chain_definition>$land$_dtk$massstab$_col.rft.xml</function_chain_definition>
+					<location_function_name>Mosaic Function</location_function_name>
+				</EditRasterFunction>
+
+				<BuildBoundary>
+					<append_to_existing>OVERWRITE</append_to_existing>
+				</BuildBoundary>
+				
+				<DefineOverviews>
+					<pixel_size>1.25</pixel_size>
+					<number_of_levels>3</number_of_levels>
+					<overview_factor>4</overview_factor>
+					<force_overview_tiles>NO_FORCE_OVERVIEW_TILES</force_overview_tiles>
+					<resampling_method>NEAREST</resampling_method>
+					<compression_method>LZW</compression_method>
+					<compression_quality>75</compression_quality>
+				</DefineOverviews>
+				<BuildOverviews>
+					<define_missing_tiles>DEFINE_MISSING_TILES</define_missing_tiles>
+					<generate_overviews>GENERATE_OVERVIEWS</generate_overviews>
+					<generate_missing_images>GENERATE_MISSING_IMAGES</generate_missing_images>
+					<regenerate_stale_images>REGENERATE_STALE_IMAGES</regenerate_stale_images>
+				</BuildOverviews>
+				
+			</Processes>
+		</MosaicDataset>
+	</Workspace>
+</Application>

@@ -1,0 +1,54 @@
+stages:
+- test
+- build
+- docker
+- deploy
+- release
+
+#-----------------
+# Tests
+#-----------------
+
+.tests:
+  stage: test
+  script:
+    - make test FLAVOR=$QGIS_FLAVOR
+  tags:
+    - infrav3-dind
+
+tests:ltr:
+  extends: .tests
+  variables:
+    QGIS_FLAVOR: ltr
+
+tests:release:
+  extends: .tests
+  needs:
+    - "tests:ltr"
+  variables:
+    QGIS_FLAVOR: release
+
+
+#---------------
+# Build
+#---------------
+
+build:
+  stage: build
+  script:
+    - make dist deliver
+  environment:
+    name: snap
+  only:
+    refs:
+      - tags
+      - master
+  tags:
+    - infrav3
+  except:
+    - schedules
+    - triggers
+
+# Docker build 
+include: '/docker/.gitlab-ci.yml'
+

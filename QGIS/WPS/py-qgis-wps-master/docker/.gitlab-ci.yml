@@ -1,0 +1,97 @@
+
+variables:
+    FACTORY_MANIFEST: "docker/factory.manifest"
+
+.only_refs: &only_refs
+  refs:
+    - tags
+    - master
+
+#-------------
+# Build
+#-------------
+
+.build-docker:
+  stage: docker
+  script:
+    - make version
+    - make -C docker build deliver pushrc clean FLAVOR=$QGIS_FLAVOR
+  environment:
+    name: snap
+  artifacts:
+    paths:
+      - "docker/factory.manifest"
+  only:
+    <<: *only_refs 
+  tags:
+    - infrav3-dind
+
+build-docker:release:
+  extends: .build-docker
+  variables:
+    QGIS_FLAVOR: release
+
+build-docker:ltr:
+  extends: .build-docker
+  variables:
+    QGIS_FLAVOR: ltr
+
+build-docker:3.22:
+  extends: .build-docker
+  variables:
+    QGIS_FLAVOR: "3.22"
+
+#-------------
+# deploy
+#-------------
+
+deploy:snap:
+  stage: deploy
+  script:
+    - $FACTORY_SCRIPTS/update-service wps
+  environment:
+    name: snap
+  only:
+    <<: *only_refs
+  tags:
+    - infrav3-plain
+
+#-------------
+# Release
+#-------------
+
+.release:
+  stage: release
+  script:
+    - $FACTORY_SCRIPTS/release-image.sh qgis-wps-server-$QGIS_FLAVOR
+    - $FACTORY_SCRIPTS/push-to-docker-hub.sh --clean
+  environment:
+    name: production
+  when: manual
+  only:
+    refs:
+      - tags
+  tags:
+    - infrav3-dind
+
+release:release:
+  extends: .release
+  variables:
+    QGIS_FLAVOR: release
+  dependencies:
+    - build-docker:release
+
+release:ltr:
+  extends: .release
+  variables:
+    QGIS_FLAVOR: ltr
+  dependencies:
+    - build-docker:ltr
+
+release:3.22:
+  extends: .release
+  variables:
+    QGIS_FLAVOR: "3.22"
+  dependencies:
+    - build-docker:3.22
+

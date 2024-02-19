@@ -1,0 +1,17 @@
+Source: pywps
+Section: python
+Priority: optional
+Maintainer: Jachym Cepicky <jachym.cepicky@gmail.com>
+Build-Depends: debhelper (>= 9), python, python-setuptools
+Standards-Version: 3.9.5
+X-Python-Version: >= 2.7
+Vcs-Git: https://github.com/geopython/pywps.git
+
+Package: python-pywps
+Architecture: all
+Depends: ${misc:Depends}, ${python:Depends}, python-pkg-resources, python-dateutil, python-flufl.enum, python-jsonschema, python-lxml, python-owslib, python-werkzeug
+Suggests: grass, apache2, apache
+Homepage: https://pywps.org
+Description: OGC Web Processing Service (WPS) Implementation
+ PyWPS is an implementation of the Web Processing Service
+ standard from the Open Geospatial Consortium. PyWPS is written in Python.

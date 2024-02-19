@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Application>
+	<Name>DTK Mosaike</Name>
+	<Command>AR</Command>
+			 
+	<Workspace>
+		<WorkspacePath>D:\Praktikanten\Hackenberg_Moritz\DTK-Workflow-test\Services_test</WorkspacePath>
+		<Geodatabase>Services_test</Geodatabase>
+		<MosaicDataset>
+			<Name>Ss_col</Name>
+			<AddRasters>
+				<AddRaster>
+                    <dataset_id>DTK_</dataset_id>
+					<raster_type>Raster Dataset</raster_type>
+					<Sources>
+						<data_path>D:\Praktikanten\Hackenberg_Moritz\DTK-Workflow-test\2022-11-24</data_path>
+					</Sources>
+					<filter>*col.tif</filter>
+					<sub_folder>SUBFOLDERS</sub_folder>
+					<duplicate_items_action>OVERWRITE_DUPLICATES</duplicate_items_action>
+					</Sources>	
+				</AddRaster>
+			</AddRasters>
+		</MosaicDataset>
+	</Workspace>
+</Application>
+
+
+<!--<transmission_fields>MinPS;MaxPS;LowPS;HighPS;CenterX;CenterY;ZOrder;Shape_Length;Shape_Area;Land;Eigentuemer;Aktualitaet_Kachelinformationen;Version_Standard;Aktualitaet;Erfassungsmethode;Bildflugnummer;Kamera_Sensor;Bodenpixelgroesse;Spektralkanaele;Koordinatenreferenzssystem_Lage;Koordinatenreferenzssystem_Hoehe;Bezugsflaeche;Koordinatenursprung_East;Koordinatenursprung_North;Standardabweichung;Quelldatenqualitaet;Belaubungszustand;Bemerkungen</transmission_fields>
+				-->

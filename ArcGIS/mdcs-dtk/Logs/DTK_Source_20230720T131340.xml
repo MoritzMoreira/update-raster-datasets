@@ -1,0 +1,92 @@
+<?xml version="1.0" ?>
+<Projects>
+	<MDCS>
+		<StartTime>20230720T131209</StartTime>
+		<EndTime>20230720T131340</EndTime>
+		<TotalDuration>90</TotalDuration>
+		<Message>User Defined Variable: workspace:D:\Praktikanten\Hackenberg_Moritz\DTK-Workflow-test\Services_test</Message>
+		<Message>User Defined Variable: land:BE</Message>
+		<Message>User Defined Variable: srs:25833</Message>
+		<Message>User Defined Variable: cellsize:5</Message>
+		<Message>User Defined Variable: dataPath:W:/dtk100/be/2018-02-13 </Message>
+		<Message>User Defined Variable: utm:3</Message>
+		<Message>User Defined Variable: massstab:100</Message>
+		<Message>User Defined Variable: pixeltype:1_BIT</Message>
+		<Message>User Defined Variable: datum:2023-07-20_3</Message>
+		<Message>User Defined Variable: layer:sebl</Message>
+		<Message>Using template:D:\Praktikanten\Hackenberg_Moritz\DTK-Workflow-test\Services_test\mdcs-dtk\Parameter\Config\DTK_Source.xml</Message>
+		<Message>Using default command(s):CM+SP+AR+CV+CV+IG+ClipFootprints+BB</Message>
+		<Message>Processing command(s):CM+SP+AR+CV+CV+IG+CLIPFOOTPRINTS+BB</Message>
+		<Message>Command:CV-&gt;Calculate mosaic dataset values.</Message>
+		<Message>Calculate values:D:\Praktikanten\Hackenberg_Moritz\DTK-Workflow-test\Services_test\dtk100_BE_2023-07-20_3.gdb\S_sebl</Message>
+		<Status>OK</Status>
+		<Message>Done...</Message>
+		<Duration>71</Duration>
+		<CM>
+			<Message>Command:CM-&gt;Create a new mosaic dataset.</Message>
+			<Message>
+				Creating Geodatabase: (D:\Praktikanten\Hackenberg_Moritz\DTK-Workflow-test\Services_test\dtk100_BE_2023-07-20_3.gdb)
+				<Error>
+					<type>warning</type>
+					<text>	000258: File geodatabase already exists!</text>
+				</Error>
+			</Message>
+			<Message>Creating source mosaic datasets:</Message>
+			<Message>	S_sebl</Message>
+			<Status>OK</Status>
+			<Duration>5</Duration>
+		</CM>
+		<SP>
+			<Message>
+				Command:SP-&gt;Set mosaic dataset properties.
+				<Error>
+					<type>warning</type>
+					<text>SP flag is not found!</text>
+				</Error>
+			</Message>
+			<Message>Using default for Set property</Message>
+			<Message>Calling (arcpy.SetMosaicDatasetProperties_management)</Message>
+			<Message>Status: OK</Message>
+			<Status>OK</Status>
+			<Duration>12</Duration>
+		</SP>
+		<AR>
+			<Message>Command:AR-&gt;Add rasters/data to a mosaic dataset.</Message>
+			<Message>Adding rasters:</Message>
+			<Message>	Using mosaic dataset/ID:S_sebl/DTK_BE_2023-07-20_3</Message>
+			<Message>	Using ART for S_SEBL: Raster Dataset</Message>
+			<Message>Adding items..</Message>
+			<Message>Calling (arcpy.AddRastersToMosaicDataset_management)</Message>
+			<Message>Status: OK</Message>
+			<Message>Calculating 'Dataset ID' for the mosaic dataset (S_sebl) with value (DTK_BE_2023-07-20_3)</Message>
+			<Status>OK</Status>
+			<Duration>34</Duration>
+		</AR>
+		<CV>
+			<Message>Command:CV-&gt;Calculate mosaic dataset values.</Message>
+			<Message>Calculate values:D:\Praktikanten\Hackenberg_Moritz\DTK-Workflow-test\Services_test\dtk100_BE_2023-07-20_3.gdb\S_sebl</Message>
+			<Status>OK</Status>
+			<Duration>10</Duration>
+		</CV>
+		<IG>
+			<Message>Command:IG-&gt;Import mosaic dataset geometry.</Message>
+			<Status>OK</Status>
+			<Duration>5</Duration>
+		</IG>
+		<ClipFootprints>
+			<Message>Command:ClipFootprints-&gt;User defined command (ClipFootprints)</Message>
+			<Message>	Selecting feature from dtk100_laenderpolygone where Land LIKE 'BE'</Message>
+			<Message>	Clip footprints</Message>
+			<Message>		Created clipped footprint geometry: D:\Praktikanten\Hackenberg_Moritz\DTK-Workflow-test\Services_test\dtk100_BE_2023-07-20_3.gdb\source_footprints.</Message>
+			<Message>	Import clipped footprint geometry</Message>
+			<Status>OK</Status>
+			<Duration>7</Duration>
+		</ClipFootprints>
+		<BB>
+			<Message>Command:BB-&gt;Build boundary.</Message>
+			<Message>Building the boundary #</Message>
+			<Status>OK</Status>
+			<Duration>6</Duration>
+		</BB>
+	</MDCS>
+</Projects>

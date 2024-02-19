@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Application>
+	<Name>DTK Mosaike</Name>
+	<Command>CM+SP+AR+BB</Command>
+			 
+	<Workspace>
+		<WorkspacePath>$workspace$</WorkspacePath>
+		<Geodatabase>dtk$massstab$_$land$_$datum$</Geodatabase>
+		<MosaicDataset>
+			<MosaicDatasetType>derived</MosaicDatasetType>
+			<Name>D_$layer$</Name>
+			<SRS>$srs$</SRS>
+			<num_bands>4</num_bands>
+			<pixel_type>$pixeltype$</pixel_type>
+			<DefaultProperties>
+				<allowed_compressions>None</allowed_compressions>
+				<resampling_type>BILINEAR</resampling_type>
+				<clip_to_footprints>CLIP</clip_to_footprints>
+				<clip_to_boundary>CLIP</clip_to_boundary>
+				<footprints_may_contain_nodata>FOOTPRINTS_DO_NOT_CONTAIN_NODATA</footprints_may_contain_nodata>
+				<allowed_mosaic_methods>NorthWest;Seamline;None</allowed_mosaic_methods>
+				<default_mosaic_method>NorthWest</default_mosaic_method>
+				<cell_size>$cellSize$</cell_size>
+				<metadata_level>BASIC</metadata_level>
+				<data_source_type>PROCESSED</data_source_type>
+				<max_num_of_download_items>800</max_num_of_download_items>
+				<minimum_pixel_contribution>50</minimum_pixel_contribution>
+			</DefaultProperties>
+
+			<AddRasters>
+				<AddRaster>
+					<build_pyramids>NO_PYRAMIDS</build_pyramids>
+					<dataset_id>DTK_$land$_$datum$_$layer$</dataset_id>
+					<raster_type>Table</raster_type>
+					<Sources>
+						<data_path>$workspace$\dtk$massstab$_$land$_$datum$.gdb\$layer$_md_d</data_path> 
+						<data_path>$workspace$\dtk$massstab$_$land$_$datum$.gdb\S_$layer$</data_path>
+					</Sources>
+					<calculate_statistics>NO_STATISTICS</calculate_statistics>	
+				</AddRaster>
+			</AddRasters>
+
+			<Processes>
+			
+				<BuildBoundary>
+					<append_to_existing>OVERWRITE</append_to_existing>
+				</BuildBoundary>
+			</Processes>
+		</MosaicDataset>
+	</Workspace>
+</Application>

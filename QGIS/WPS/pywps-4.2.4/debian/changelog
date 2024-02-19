@@ -1,0 +1,144 @@
+pywps (4.2.4) trusty; urgency=medium
+
+  * Added support for multiple languages (#510).
+  * Added AWS S3 Storage option (#451).
+  * Fixed type check (#507).
+  * Fixed file storage (#504).
+  * Fixed async keyword (#502).
+
+ -- Carsten Ehbrecht <ehbrecht@dkrz.de>  Thu, 06 Feb 2020 12:00:00 +0000
+
+pywps (4.2.3) trusty; urgency=medium
+
+  * Check data is defined in literal template (#499)
+  * Mention known issues with sqlite memory in docs for logging.database config (#496)
+
+ -- Carsten Ehbrecht <ehbrecht@dkrz.de>  Di, 05 Nov 2019 12:00:00 +0000
+
+pywps (4.2.2) trusty; urgency=medium
+
+  * Fixed scheduler extension (#480).
+  * Fixed ValuesReference implementation (#471, #484).
+  * Fixed AllowedValue range (#467, #464).
+  * Add metalink support to facilitate outputs with multiple files (#466).
+  * Rename async to async_ for Python 3.7 compatibility (#462).
+  * Improve queue race conditions (#455).
+  * Numerous bug-fixes, additional tests and documentation improvements.
+
+ -- Carsten Ehbrecht <ehbrecht@dkrz.de>  Fr, 20 Sep 2019 12:00:00 +0000
+
+pywps (4.2.1) trusty; urgency=medium
+
+  * Fixed `flufl.enum` dependency.
+  * Updated string formatting to use `.format()` convention.
+  * Updated docs for release packaging and contribution.
+
+ -- Tom Kralidis <tomkralidis@gmail.com>  Mon, 17 Dec 2018 12:00:00 +0000
+
+pywps (4.2.0) trusty; urgency=medium
+
+  * Jinja2 templates for output generation
+  * Support for HPC cluster (Slurm, GridEngine)
+  * Support for streamed URL-based data input (OpenDAP, download on demand)
+  * Sphinx directive to automatically document processes.
+  * Refactoring of IO handler classes
+  * Added validators for JSON, DODS links and netCDF formats
+  * Numerous bug-fixes, additional tests and documentation improvements
+
+ -- Tom Kralidis <tomkralidis@gmail.com>  Sun, 16 Dec 2018 12:00:00 +0000
+
+pywps (4.0.0) trusty; urgency=medium
+
+  * New version of PyWPS
+  * New processes structure
+  * Logging to database, jobs control
+  * Jobs queue
+  * Separated processes and PyWPS-Demo project
+
+ -- Jáchym Čepický <jachym.cepicky@opengeolabs.cz>  Wed, 07 Dec 2016 10:54:43 +0100
+
+pywps (4.0.0-alpha2) trusty; urgency=medium
+
+  * Re-did debian packaging for v4.0
+
+ -- Khosrow Ebrahimpour <khosrow@khosrow.ca>  Wed, 17 Feb 2016 14:21:27 -0500
+
+pywps (3.2.4-1) precise; urgency=medium
+
+  * Overhauled debian build
+  * Moved all pkg reqs from control file to requirements.txt
+  * renamed binary package to python-pywps
+
+ -- Khosrow Ebrahimpour <khosrow@khosrow.ca>  Fri, 12 Feb 2016 02:47:46 +0000
+
+pywps (3.2.4) precise; urgency=low
+
+  * fix logging bugs
+  * fix output type handling
+
+ -- Tom Kralidis <tomkralidis@gmail.com>  Thu, 11 Feb 2016 00:49:14 +0000
+
+pywps (3.2.3) precise; urgency=low
+
+  * Release of current minor bug fixing patches
+
+ -- Jachym Cepicky <jachym.cepicky@gmail.com>  Sat, 06 Feb 2016 19:22:22 +0000
+
+pywps (3.2.2) precise; urgency=low
+
+  * Changelog version number updated to 3.2.2 and removing of entries in /debian/docs as the files don't exist in the doc directory.
+
+ -- Jachym Cepicky <jachym@les-ejk.cz>  Tue, 02 Feb 2016 19:22:22 +0000
+
+pywps (3.0.0-1) stable; urgency=low
+
+  * New version
+  * New code structure
+  * New processes examples
+  * New configuration file
+  * See change log for more details
+
+ -- Jachym Cepicky <jachym@les-ejk.cz>  Thu, 16 Sep 2008 10:00:00 +0100
+
+pywps (2.0.0-1) stable; urgency=low
+
+  * New version
+  * New code structure
+  * See change log for more details
+
+ -- Jachym Cepicky <jachym@les-ejk.cz>  Mon, 4 Jun 2007 15:38:00 +0200
+
+pywps (1.1.0-1) stable; urgency=low
+
+  1.1.0 devel
+  Changes since 1.0.0:
+  * ComplexValueReference input type definition is deprecated,
+    use only ComplexValue - PyWPS will recognise the input type and handle
+    it according to it.
+  * GRASS location not created automatically any more.
+  * Rewritten exception handling
+  * Basic support for Range in LiteralValue definition
+
+ -- Jachym Cepicky <jachym@les-ejk.cz>  Fri, 2 Nov 2006 15:38:00 +0200
+
+pywps (1.0.0-1) stable; urgency=low
+
+  1.0.0 Stable
+  Changes since RC3:
+  * Fixed HTTP POST method
+  * Added longer name for PyWPS PID file
+  * Fixed small bug in BoundingBox
+
+ -- Jachym Cepicky <jachym@les-ejk.cz>  Fri, 2 Nov 2006 15:38:00 +0200
+
+pywps (1.0.0rc3-1) unstable; urgency=low
+
+  * Release candidate 3
+
+ -- Jachym Cepicky <jachym@les-ejk.cz>  Fri, 2 Nov 2006 15:38:00 +0200
+
+pywps (1.0.0-1) unstable; urgency=low
+
+  * Initial release
+
+ -- Jachym Cepicky <jachym@les-ejk.cz>  Fri, 20 Oct 2006 12:02:58 +0200

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Application>
+	<Name>DTK abgeleitete Mosaike</Name>
+	<Command>CM+SP+SE+AR+BB+ERF+SE+DO+SE+BO</Command>
+	<Workspace>
+		<WorkspacePath>$workspace$</WorkspacePath>
+		<Geodatabase>dtk$massstab$_$land$_$datum$</Geodatabase>
+		<MosaicDataset>
+			<MosaicDatasetType>derived</MosaicDatasetType>
+			<Name>D_$layer$</Name>
+			<SRS>$srs$</SRS>
+			<num_bands>1</num_bands>
+			<pixel_type>$pixeltype$</pixel_type>
+
+			<DefaultProperties>
+				<allowed_compressions>LZ77;None</allowed_compressions>
+				<default_compression_type>LZ77</default_compression_type>
+				<resampling_type>NEAREST</resampling_type>
+				<clip_to_footprints>CLIP</clip_to_footprints>
+				<footprints_may_contain_nodata>FOOTPRINTS_DO_NOT_CONTAIN_NODATA</footprints_may_contain_nodata>
+				<allowed_mosaic_methods>NorthWest;None</allowed_mosaic_methods>
+				<default_mosaic_method>NorthWest</default_mosaic_method>
+				<cell_size>$cellSize$</cell_size>
+				<metadata_level>BASIC</metadata_level>
+				<data_source_type>THEMATIC</data_source_type>
+				<max_num_of_download_items>200</max_num_of_download_items>
+				<minimum_pixel_contribution>50</minimum_pixel_contribution>
+			</DefaultProperties>
+
+			<AddRasters>
+				<AddRaster>
+					<dataset_id>DTK_$land$_$datum$</dataset_id>
+					<raster_type>Table</raster_type>
+					<Sources>
+						<data_path>\\lswfsdtk1\dtk2\DTK-N-Repository\Ressourcen\dtk$massstab$_Bestand.gdb\dtk$massstab$_col_utm32s</data_path>
+						<data_path>$workspace$\dtk$massstab$_$land$_$datum$.gdb\S_$layer$</data_path>
+					</Sources>
+				</AddRaster>
+			</AddRasters>
+
+			<Table>
+				<AddFields>AddFields</AddFields>
+					<Fields>
+						<Field>
+							<name>Land</name>
+							<type>TEXT</type>
+							<length>2</length>
+						</Field>
+					</Fields>
+			</Table>
+			
+			<Processes>
+				<CalculateValues>
+					<CalculateValue>
+						<fieldName>Land</fieldName>
+						<expression>'$land$'</expression>
+						<expression_type>PYTHON</expression_type>
+					</CalculateValue>
+					<CalculateValue>
+						<fieldName>ZOrder</fieldName>
+						<expression>3</expression>
+						<expression_type>PYTHON</expression_type>
+					</CalculateValue>
+				</CalculateValues>
+					<Environment>
+					<parallelProcessingFactor>50%</parallelProcessingFactor>
+				</Environment>
+				<EditRasterFunction>
+					<edit_mosaic_dataset_item>EDIT_MOSAIC_DATASET</edit_mosaic_dataset_item>
+					<edit_options>INSERT</edit_options>
+					<function_chain_definition>DTK-$layer$ormap_PQS1.0.rft.xml</function_chain_definition>
+					<location_function_name>Mosaic Function</location_function_name>
+				</EditRasterFunction>
+				<BuildBoundary>
+					<append_to_existing>OVERWRITE</append_to_existing>
+					<simplification_method>ENVELOPE</simplification_method>
+				</BuildBoundary>
+				<DefineOverviews>
+					<pixel_size>1.25</pixel_size>
+					<number_of_levels>3</number_of_levels>
+					<overview_factor>4</overview_factor>
+					<resampling_method>NEAREST</resampling_method>
+					<compression_method>LZW</compression_method>
+					<compression_quality>75</compression_quality>
+				</DefineOverviews>
+			</Processes>
+		</MosaicDataset>
+	</Workspace>
+</Application>

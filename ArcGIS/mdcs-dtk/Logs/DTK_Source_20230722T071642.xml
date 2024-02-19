@@ -1,0 +1,92 @@
+<?xml version="1.0" ?>
+<Projects>
+	<MDCS>
+		<StartTime>20230722T071551</StartTime>
+		<EndTime>20230722T071642</EndTime>
+		<TotalDuration>50</TotalDuration>
+		<Message>User Defined Variable: workspace:D:\Praktikanten\Hackenberg_Moritz\DTK-Workflow-test\Services_test</Message>
+		<Message>User Defined Variable: land:TH</Message>
+		<Message>User Defined Variable: srs:25832</Message>
+		<Message>User Defined Variable: cellsize:2.5</Message>
+		<Message>User Defined Variable: dataPath:D:/Praktikanten/Hackenberg_Moritz/DTK-Workflow-test/QGIS/vrt/Ressourcen</Message>
+		<Message>User Defined Variable: utm:2</Message>
+		<Message>User Defined Variable: massstab:50</Message>
+		<Message>User Defined Variable: pixeltype:8_BIT_UNSIGNED</Message>
+		<Message>User Defined Variable: datum:2023-07-22_3</Message>
+		<Message>User Defined Variable: layer:col</Message>
+		<Message>Using template:D:\Praktikanten\Hackenberg_Moritz\DTK-Workflow-test\Services_test\mdcs-dtk\Parameter\Config\DTK_Source.xml</Message>
+		<Message>Using default command(s):CM+SP+AR+CV+CV+IG+ClipFootprints+BB</Message>
+		<Message>Processing command(s):CM+SP+AR+CV+CV+IG+CLIPFOOTPRINTS+BB</Message>
+		<Message>Command:CV-&gt;Calculate mosaic dataset values.</Message>
+		<Message>Calculate values:D:\Praktikanten\Hackenberg_Moritz\DTK-Workflow-test\Services_test\dtk50_TH_2023-07-22_3.gdb\S_col</Message>
+		<Status>OK</Status>
+		<Message>Done...</Message>
+		<Duration>43</Duration>
+		<CM>
+			<Message>Command:CM-&gt;Create a new mosaic dataset.</Message>
+			<Message>
+				Creating Geodatabase: (D:\Praktikanten\Hackenberg_Moritz\DTK-Workflow-test\Services_test\dtk50_TH_2023-07-22_3.gdb)
+				<Error>
+					<type>warning</type>
+					<text>	000258: File geodatabase already exists!</text>
+				</Error>
+			</Message>
+			<Message>Creating source mosaic datasets:</Message>
+			<Message>	S_col</Message>
+			<Status>OK</Status>
+			<Duration>6</Duration>
+		</CM>
+		<SP>
+			<Message>
+				Command:SP-&gt;Set mosaic dataset properties.
+				<Error>
+					<type>warning</type>
+					<text>SP flag is not found!</text>
+				</Error>
+			</Message>
+			<Message>Using default for Set property</Message>
+			<Message>Calling (arcpy.SetMosaicDatasetProperties_management)</Message>
+			<Message>Status: OK</Message>
+			<Status>OK</Status>
+			<Duration>11</Duration>
+		</SP>
+		<AR>
+			<Message>Command:AR-&gt;Add rasters/data to a mosaic dataset.</Message>
+			<Message>Adding rasters:</Message>
+			<Message>	Using mosaic dataset/ID:S_col/DTK_TH_2023-07-22_3</Message>
+			<Message>	Using ART for S_COL: Raster Dataset</Message>
+			<Message>Adding items..</Message>
+			<Message>Calling (arcpy.AddRastersToMosaicDataset_management)</Message>
+			<Message>Status: OK</Message>
+			<Message>Calculating 'Dataset ID' for the mosaic dataset (S_col) with value (DTK_TH_2023-07-22_3)</Message>
+			<Status>OK</Status>
+			<Duration>19</Duration>
+		</AR>
+		<CV>
+			<Message>Command:CV-&gt;Calculate mosaic dataset values.</Message>
+			<Message>Calculate values:D:\Praktikanten\Hackenberg_Moritz\DTK-Workflow-test\Services_test\dtk50_TH_2023-07-22_3.gdb\S_col</Message>
+			<Status>OK</Status>
+			<Duration>4</Duration>
+		</CV>
+		<IG>
+			<Message>Command:IG-&gt;Import mosaic dataset geometry.</Message>
+			<Status>OK</Status>
+			<Duration>1</Duration>
+		</IG>
+		<ClipFootprints>
+			<Message>Command:ClipFootprints-&gt;User defined command (ClipFootprints)</Message>
+			<Message>	Selecting feature from dtk50_laenderpolygone where Land LIKE 'TH'</Message>
+			<Message>	Clip footprints</Message>
+			<Message>		Created clipped footprint geometry: D:\Praktikanten\Hackenberg_Moritz\DTK-Workflow-test\Services_test\dtk50_TH_2023-07-22_3.gdb\source_footprints.</Message>
+			<Message>	Import clipped footprint geometry</Message>
+			<Status>OK</Status>
+			<Duration>3</Duration>
+		</ClipFootprints>
+		<BB>
+			<Message>Command:BB-&gt;Build boundary.</Message>
+			<Message>Building the boundary #</Message>
+			<Status>OK</Status>
+			<Duration>1</Duration>
+		</BB>
+	</MDCS>
+</Projects>

@@ -1,0 +1,22 @@
+*.pyc
+*.pyo
+*.egg-info
+dist
+build
+tmp
+.tox
+docs/_build
+
+# vim, mac os
+*.sw*
+.DS_Store
+.*.un~
+
+# project
+.idea
+
+# git
+
+*.orig
+.coverage
+.pytest_cache
